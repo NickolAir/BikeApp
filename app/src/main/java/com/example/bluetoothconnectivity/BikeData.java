@@ -5,18 +5,23 @@ public class BikeData {
     private boolean hasSpeedometer;
     private boolean hasPressureMeter;
     private boolean hasHeartRateMonitor;
+    private String speedometerText;
+    private String pressureMeterText;
+    private String heartRateMonitorText;
 
-    public void setHasSpeedometer(boolean hasSpeedometer) {
+    public void setSpeedometer(boolean hasSpeedometer, String speedometerText) {
         this.hasSpeedometer = hasSpeedometer;
+        this.speedometerText = speedometerText;
     }
 
-    public void setHasPressureMeter(boolean hasPressureMeter) {
+    public void setPressureMeter(boolean hasPressureMeter, String pressureMeterText) {
         this.hasPressureMeter = hasPressureMeter;
+        this.pressureMeterText = pressureMeterText;
     }
 
-
-    public void setHasHeartRateMonitor(boolean hasHeartRateMonitor) {
+    public void setHeartRateMonitor(boolean hasHeartRateMonitor, String heartRateMonitorText) {
         this.hasHeartRateMonitor = hasHeartRateMonitor;
+        this.heartRateMonitorText = heartRateMonitorText;
     }
 
     public void setWheelRadius(int selectedRadius) {

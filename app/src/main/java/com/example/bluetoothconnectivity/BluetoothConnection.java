@@ -3,6 +3,7 @@ package com.example.bluetoothconnectivity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
@@ -17,10 +18,9 @@ import java.util.Set;
 
 public class BluetoothConnection extends AppCompatActivity {
     private static final int REQUEST_ENABLE_BT = 0;
-    private static final int REQUEST_DISCOVER_BT = 1;
 
     TextView deviceList;
-    Button discoverBtn, pairBtn;
+    Button pairBtn;
     BluetoothAdapter bluetoothAdapter;
 
     Intent btEnablingIntent;
@@ -30,7 +30,6 @@ public class BluetoothConnection extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bluetooth_connection);
 
-        discoverBtn = findViewById(R.id.discoverButton);
         pairBtn = findViewById(R.id.pairedDevicesButton);
         deviceList = findViewById(R.id.pairedDevices);
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -41,28 +40,6 @@ public class BluetoothConnection extends AppCompatActivity {
         } else {
             Toast.makeText(BluetoothConnection.this, "Bluetooth is available", Toast.LENGTH_SHORT).show();
         }
-        
-        discoverBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (ActivityCompat.checkSelfPermission(BluetoothConnection.this, android.Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
-                    return;
-                }
-                if (!bluetoothAdapter.isDiscovering()) {
-                    showToast("Make your Device Discoverabble");
-                    Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
-                    startActivityForResult(intent, REQUEST_DISCOVER_BT);
-                }
-
-            }
-        });
 
         pairBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +47,7 @@ public class BluetoothConnection extends AppCompatActivity {
 
                 if (bluetoothAdapter.isEnabled()) {
                     deviceList.setText("Paired Devices");
-                    if (ActivityCompat.checkSelfPermission(BluetoothConnection.this, android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                    if (ActivityCompat.checkSelfPermission(BluetoothConnection.this, Manifest.permission.BLUETOOTH_ADMIN) != PackageManager.PERMISSION_GRANTED) {
                         // TODO: Consider calling
                         //    ActivityCompat#requestPermissions
                         // here to request the missing permissions, and then overriding

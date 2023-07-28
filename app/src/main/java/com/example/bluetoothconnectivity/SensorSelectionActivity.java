@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
@@ -12,13 +14,11 @@ import com.google.gson.Gson;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class SensorSelectionActivity extends AppCompatActivity {
 
-    private CheckBox speedometerCheckbox;
-    private CheckBox pressureMeterCheckbox;
-    private CheckBox heartRateMonitorCheckbox;
+    private CheckBox speedometerCheckbox, pressureMeterCheckbox, heartRateMonitorCheckbox;
+    private EditText speedometerEditText, pressureMeterEditText, heartRateMonitorEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +29,10 @@ public class SensorSelectionActivity extends AppCompatActivity {
         pressureMeterCheckbox = findViewById(R.id.pressureMeterCheckbox);
         heartRateMonitorCheckbox = findViewById(R.id.heartRateMonitorCheckbox);
 
+        speedometerEditText = findViewById(R.id.speedometerEditText);
+        pressureMeterEditText = findViewById(R.id.pressureMeterEditText);
+        heartRateMonitorEditText = findViewById(R.id.heartRateMonitorEditText);
+
         Button submitButton = findViewById(R.id.submitButton);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,11 +42,16 @@ public class SensorSelectionActivity extends AppCompatActivity {
                 boolean hasPressureMeter = pressureMeterCheckbox.isChecked();
                 boolean hasHeartRateMonitor = heartRateMonitorCheckbox.isChecked();
 
+                // Получаем данные из полей ввода
+                String speedometerText = speedometerEditText.getText().toString();
+                String pressureMeterText = pressureMeterEditText.getText().toString();
+                String heartRateMonitorText = heartRateMonitorEditText.getText().toString();
+
                 // Создаем объект BikeData с данными о выбранных датчиках
                 BikeData bikeData = new BikeData();
-                bikeData.setHasSpeedometer(hasSpeedometer);
-                bikeData.setHasPressureMeter(hasPressureMeter);
-                bikeData.setHasHeartRateMonitor(hasHeartRateMonitor);
+                bikeData.setSpeedometer(hasSpeedometer, speedometerText);
+                bikeData.setPressureMeter(hasPressureMeter, pressureMeterText);
+                bikeData.setHeartRateMonitor(hasHeartRateMonitor, heartRateMonitorText);
 
                 // Получаем переданный из предыдущей активности выбранный радиус колеса
                 Intent intent = getIntent();

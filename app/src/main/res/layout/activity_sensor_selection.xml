@@ -6,45 +6,83 @@
     android:background="@color/gray"
     android:padding="16dp">
 
-    <CheckBox
-        android:id="@+id/speedometerCheckbox"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Speedometer"
-        android:textSize="30sp"
-        android:layout_marginTop="10dp"
-        android:textColor="#FFF8E7"
-        android:fontFamily="@font/montserrat"/>
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
 
-    <CheckBox
-        android:id="@+id/pinCheckbox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="PIN"
-        android:textSize="30sp"
-        android:layout_marginTop="10dp"
-        android:textColor="#FFF8E7"
-        android:fontFamily="@font/montserrat"/>
+        <CheckBox
+            android:id="@+id/speedometerCheckbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Speedometer"
+            android:textSize="30sp"
+            android:textColor="#FFF8E7"
+            android:fontFamily="@font/montserrat"/>
 
-    <CheckBox
-        android:id="@+id/pressureMeterCheckbox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Pressure Meter"
-        android:textSize="30sp"
-        android:layout_marginTop="10dp"
-        android:textColor="#FFF8E7"
-        android:fontFamily="@font/montserrat"/>
+        <EditText
+            android:id="@+id/speedometerEditText"
+            android:layout_width="120"
+            android:layout_height="50"
+            android:hint="Enter pin"
+            android:textSize="20sp"
+            android:textColorHint="#FFF8E7"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/montserrat"/>
+    </LinearLayout>
 
-    <CheckBox
-        android:id="@+id/heartRateMonitorCheckbox"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Heart Rate Monitor"
-        android:textSize="30sp"
-        android:layout_marginTop="10dp"
-        android:textColor="#FFF8E7"
-        android:fontFamily="@font/montserrat"/>
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <CheckBox
+            android:id="@+id/pressureMeterCheckbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pressure Meter"
+            android:textSize="30sp"
+            android:textColor="#FFF8E7"
+            android:fontFamily="@font/montserrat"/>
+
+        <EditText
+            android:id="@+id/pressureMeterEditText"
+            android:layout_width="120"
+            android:layout_height="50"
+            android:hint="Enter pin"
+            android:textSize="20sp"
+            android:textColorHint="#FFF8E7"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/montserrat"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <CheckBox
+            android:id="@+id/heartRateMonitorCheckbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Heart Rate"
+            android:textSize="30sp"
+            android:textColor="#FFF8E7"
+            android:fontFamily="@font/montserrat"/>
+
+        <EditText
+            android:id="@+id/heartRateMonitorEditText"
+            android:layout_width="120"
+            android:layout_height="50"
+            android:hint="Enter pin"
+            android:textSize="20sp"
+            android:textColorHint="#FFF8E7"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/montserrat"/>
+    </LinearLayout>
 
     <Button
         android:id="@+id/submitButton"
