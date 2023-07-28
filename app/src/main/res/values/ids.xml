@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="btnOff" type="id" />
+    <item name="btnOn" type="id" />
+    <item name="myImageView" type="id" />
+    <item name="myTextView" type="id" />
+    <item name="pairedDevicesButton" type="id" />
+    <item name="discoverButton" type="id" />
+</resources>

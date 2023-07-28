@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/gray"
+    android:padding="16dp">
+
+    <CheckBox
+        android:id="@+id/speedometerCheckbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Speedometer"
+        android:textSize="30sp"
+        android:layout_marginTop="10dp"
+        android:textColor="#FFF8E7"
+        android:fontFamily="@font/montserrat"/>
+
+    <CheckBox
+        android:id="@+id/pinCheckbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PIN"
+        android:textSize="30sp"
+        android:layout_marginTop="10dp"
+        android:textColor="#FFF8E7"
+        android:fontFamily="@font/montserrat"/>
+
+    <CheckBox
+        android:id="@+id/pressureMeterCheckbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pressure Meter"
+        android:textSize="30sp"
+        android:layout_marginTop="10dp"
+        android:textColor="#FFF8E7"
+        android:fontFamily="@font/montserrat"/>
+
+    <CheckBox
+        android:id="@+id/heartRateMonitorCheckbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Heart Rate Monitor"
+        android:textSize="30sp"
+        android:layout_marginTop="10dp"
+        android:textColor="#FFF8E7"
+        android:fontFamily="@font/montserrat"/>
+
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:text="Submit"
+        android:fontFamily="@font/bold"
+        android:textColor="@color/black"
+        android:background="@drawable/custom_button"
+        android:textSize="25sp"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center_horizontal"/>
+
+</LinearLayout>
