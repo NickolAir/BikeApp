@@ -23,11 +23,12 @@
 
         <EditText
             android:id="@+id/speedometerEditText"
-            android:layout_width="120"
-            android:layout_height="50"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:hint="Enter pin"
             android:textSize="20sp"
             android:textColorHint="#FFF8E7"
+            android:textColor="#FFF8E7"
             android:layout_marginStart="20dp"
             android:fontFamily="@font/montserrat"/>
     </LinearLayout>
@@ -49,11 +50,12 @@
 
         <EditText
             android:id="@+id/pressureMeterEditText"
-            android:layout_width="120"
-            android:layout_height="50"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:hint="Enter pin"
             android:textSize="20sp"
             android:textColorHint="#FFF8E7"
+            android:textColor="#FFF8E7"
             android:layout_marginStart="20dp"
             android:fontFamily="@font/montserrat"/>
     </LinearLayout>
@@ -75,11 +77,12 @@
 
         <EditText
             android:id="@+id/heartRateMonitorEditText"
-            android:layout_width="120"
-            android:layout_height="50"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:hint="Enter pin"
             android:textSize="20sp"
             android:textColorHint="#FFF8E7"
+            android:textColor="#FFF8E7"
             android:layout_marginStart="20dp"
             android:fontFamily="@font/montserrat"/>
     </LinearLayout>

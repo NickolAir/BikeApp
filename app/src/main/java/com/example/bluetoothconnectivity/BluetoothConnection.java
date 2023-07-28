@@ -37,8 +37,6 @@ public class BluetoothConnection extends AppCompatActivity {
 
         if (bluetoothAdapter == null) {
             Toast.makeText(BluetoothConnection.this, "Bluetooth doesn't support", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(BluetoothConnection.this, "Bluetooth is available", Toast.LENGTH_SHORT).show();
         }
 
         pairBtn.setOnClickListener(new View.OnClickListener() {
