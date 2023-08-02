@@ -14,7 +14,9 @@
         <entry key="..\:/Users/Nikolay/AndroidStudioProjects/BluetoothConnectivity/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Nikolay/AndroidStudioProjects/BluetoothConnectivity/app/src/main/res/layout/activity_radius_selection.xml" value="0.24010416666666667" />
         <entry key="..\:/Users/Nikolay/AndroidStudioProjects/BluetoothConnectivity/app/src/main/res/layout/activity_sensor_selection.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Nikolay/AndroidStudioProjects/BluetoothConnectivity/app/src/main/res/layout/item_device.xml" value="0.2076923076923077" />
         <entry key="..\:/Users/Nikolay/AndroidStudioProjects/BluetoothConnectivity/app/src/main/res/layout/newlayout.xml" value="0.253125" />
+        <entry key="..\:/Users/Nikolay/AndroidStudioProjects/BluetoothConnectivity/app/src/main/res/layout/recycler_view_device.xml" value="0.253125" />
       </map>
     </option>
   </component>

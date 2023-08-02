@@ -40,14 +40,25 @@
         android:textSize="17sp" />
 
     <TextView
-        android:id="@+id/pairedDevices"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
+        android:id="@+id/pairedDevices"
+        android:text="Paired devices:"
         android:minWidth="200dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/pairedDevicesButton"
         android:layout_marginTop="45dp"
+        android:fontFamily="@font/montserrat"
+        android:textColor="#FFF8E7"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/deviceRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pairedDevices"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/montserrat"
         android:textColor="#FFF8E7"
         android:textSize="25sp"
