@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Nikolay/AndroidStudioProjects/BluetoothConnectivity/app/src/main/res/drawable-v24/background2.xml" value="0.149" />
+        <entry key="..\:/Users/Nikolay/AndroidStudioProjects/BluetoothConnectivity/app/src/main/res/drawable-v24/background3.xml" value="0.149" />
         <entry key="..\:/Users/Nikolay/AndroidStudioProjects/BluetoothConnectivity/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.149" />
+        <entry key="..\:/Users/Nikolay/AndroidStudioProjects/BluetoothConnectivity/app/src/main/res/drawable/background1.xml" value="0.149" />
         <entry key="..\:/Users/Nikolay/AndroidStudioProjects/BluetoothConnectivity/app/src/main/res/drawable/custom_button.xml" value="0.149" />
         <entry key="..\:/Users/Nikolay/AndroidStudioProjects/BluetoothConnectivity/app/src/main/res/drawable/custom_button_frame.xml" value="0.149" />
         <entry key="..\:/Users/Nikolay/AndroidStudioProjects/BluetoothConnectivity/app/src/main/res/drawable/custom_button_play.xml" value="0.149" />
