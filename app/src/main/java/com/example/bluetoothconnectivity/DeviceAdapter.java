@@ -1,5 +1,6 @@
 package com.example.bluetoothconnectivity;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +14,9 @@ import java.util.List;
 
 public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.DeviceViewHolder> {
 
-    private List<String> devices;
+    private List<BluetoothDeviceModel> devices;
 
-    public DeviceAdapter(List<String> devices) {
+    public DeviceAdapter(List<BluetoothDeviceModel> devices) {
         this.devices = devices;
     }
 
@@ -29,8 +30,8 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.DeviceView
 
     @Override
     public void onBindViewHolder(@NonNull DeviceViewHolder holder, int position) {
-        String deviceName = devices.get(position);
-        holder.deviceNameTextView.setText(deviceName);
+        BluetoothDeviceModel deviceModel = devices.get(position);
+        holder.deviceNameTextView.setText(deviceModel.getDeviceName() + "\n" + deviceModel.getDeviceAddress());
     }
 
     @Override
@@ -38,12 +39,29 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.DeviceView
         return devices.size();
     }
 
-    public class DeviceViewHolder extends RecyclerView.ViewHolder {
+    public class DeviceViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView deviceNameTextView;
 
         public DeviceViewHolder(View itemView) {
             super(itemView);
             deviceNameTextView = itemView.findViewById(R.id.deviceName);
+
+            // Установка обработчика клика для элемента списка
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            int position = getAdapterPosition();
+            if (position != RecyclerView.NO_POSITION) {
+                BluetoothDeviceModel clickedDevice = devices.get(position);
+
+                // Здесь можно создать и запустить новую активность,
+                // передавая информацию о выбранном устройстве (например, имя и MAC-адрес)
+                Intent intent = new Intent(itemView.getContext(), DeviceExtra.class);
+                intent.putExtra("deviceName", clickedDevice.getDeviceName());
+                itemView.getContext().startActivity(intent);
+            }
         }
     }
 }

@@ -31,7 +31,7 @@ public class BluetoothConnection extends AppCompatActivity {
     Button pairBtn;
     BluetoothAdapter bluetoothAdapter;
 
-    private List<String> deviceList = new ArrayList<>();
+    private List<BluetoothDeviceModel> deviceList = new ArrayList<>();
     private DeviceAdapter deviceAdapter;
 
     @Override
@@ -63,9 +63,11 @@ public class BluetoothConnection extends AppCompatActivity {
                     }else{
                         getBluetoothPermission();
                     }
+
                     Set<BluetoothDevice> devices = bluetoothAdapter.getBondedDevices();
                     for (BluetoothDevice device: devices){
-                        deviceList.add("\nDevice: " + device.getName() + ",\n" + device);
+                        BluetoothDeviceModel deviceModel = new BluetoothDeviceModel(device.getName(), device.getAddress());
+                        deviceList.add(deviceModel);
                     }
                     deviceAdapter.notifyDataSetChanged();
                 }else{

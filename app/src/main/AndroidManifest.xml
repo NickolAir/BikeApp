@@ -19,6 +19,9 @@
         android:theme="@style/Theme.BluetoothConnectivity"
         tools:targetApi="31">
         <activity
+            android:name=".DeviceExtra"
+            android:exported="false" />
+        <activity
             android:name=".BluetoothConnection"
             android:exported="false" />
         <activity
