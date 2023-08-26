@@ -18,6 +18,8 @@ public class DeviceExtra extends AppCompatActivity {
         TextView deviceNameTitle = findViewById(R.id.device);
         deviceNameTitle.setText(deviceName);
 
-
+        ClientClass
     }
+
+
 }
