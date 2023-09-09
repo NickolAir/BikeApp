@@ -14,7 +14,7 @@ import java.util.List;
 
 public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.DeviceViewHolder> {
 
-    private List<BluetoothDeviceModel> devices;
+    private static List<BluetoothDeviceModel> devices;
 
     public DeviceAdapter(List<BluetoothDeviceModel> devices) {
         this.devices = devices;
@@ -39,7 +39,7 @@ public class DeviceAdapter extends RecyclerView.Adapter<DeviceAdapter.DeviceView
         return devices.size();
     }
 
-    public class DeviceViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class DeviceViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView deviceNameTextView;
 
         public DeviceViewHolder(View itemView) {

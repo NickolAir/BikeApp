@@ -13,11 +13,14 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothServerSocket;
 import android.bluetooth.BluetoothSocket;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
@@ -36,6 +39,7 @@ public class BluetoothConnection extends AppCompatActivity {
     Button showDevicesBtn, pairBtn;
     TextView status;
     BluetoothAdapter bluetoothAdapter;
+    BluetoothDevice[] deviceArray;
 
     static final int STATE_LISTENING = 1;
     static final int STATE_CONNECTING = 2;
@@ -90,7 +94,11 @@ public class BluetoothConnection extends AppCompatActivity {
                     }
 
                     Set<BluetoothDevice> devices = bluetoothAdapter.getBondedDevices();
+                    deviceArray = new BluetoothDevice[devices.size()];
+                    int index = 0;
                     for (BluetoothDevice device : devices) {
+                        deviceArray[index] = device;
+                        index++;
                         BluetoothDeviceModel deviceModel = new BluetoothDeviceModel(device.getName(), device.getAddress());
                         deviceList.add(deviceModel);
                     }
@@ -133,6 +141,12 @@ public class BluetoothConnection extends AppCompatActivity {
 
         public ServerClass() {
             try {
+                if (ActivityCompat.checkSelfPermission(BluetoothConnection.this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(BluetoothConnection.this, new String[]{Manifest.permission.BLUETOOTH_CONNECT}, REQUEST_BLUETOOTH_CONNECT_PERMISSION);
+                    return;
+                } else {
+                    getBluetoothPermission();
+                }
                 serverSocket = bluetoothAdapter.listenUsingInsecureRfcommWithServiceRecord(APP_NAME, MY_UUID);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -143,20 +157,20 @@ public class BluetoothConnection extends AppCompatActivity {
             BluetoothSocket socket = null;
             while (socket == null) {
                 try {
-                    Message message=Message.obtain();
+                    Message message = Message.obtain();
                     message.what = STATE_CONNECTING;
                     handler.sendMessage(message);
                     socket = serverSocket.accept();
                 } catch (IOException e) {
                     e.printStackTrace();
                     Message message = Message.obtain();
-                    message.what=STATE_CONNECTION_FAILED;
+                    message.what = STATE_CONNECTION_FAILED;
                     handler.sendMessage(message);
                 }
 
                 if (socket != null) {
                     Message message = Message.obtain();
-                    message.what=STATE_CONNECTED;
+                    message.what = STATE_CONNECTED;
                     handler.sendMessage(message);
 
                     //code for send/receive
@@ -174,6 +188,12 @@ public class BluetoothConnection extends AppCompatActivity {
         public ClientClass(BluetoothDevice device1) {
             device = device1;
             try {
+                if (ActivityCompat.checkSelfPermission(BluetoothConnection.this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(BluetoothConnection.this, new String[]{Manifest.permission.BLUETOOTH_CONNECT}, REQUEST_BLUETOOTH_CONNECT_PERMISSION);
+                    return;
+                } else {
+                    getBluetoothPermission();
+                }
                 socket = device.createRfcommSocketToServiceRecord(MY_UUID);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -182,6 +202,12 @@ public class BluetoothConnection extends AppCompatActivity {
 
         public void run() {
             try {
+                if (ActivityCompat.checkSelfPermission(BluetoothConnection.this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(BluetoothConnection.this, new String[]{Manifest.permission.BLUETOOTH_CONNECT}, REQUEST_BLUETOOTH_CONNECT_PERMISSION);
+                    return;
+                } else {
+                    getBluetoothPermission();
+                }
                 socket.connect();
                 Message message = Message.obtain();
                 message.what = STATE_CONNECTED;
@@ -197,6 +223,64 @@ public class BluetoothConnection extends AppCompatActivity {
             }
         }
     }
+
+/*    private class DeviceAdapter extends RecyclerView.Adapter<com.example.bluetoothconnectivity.DeviceAdapter.DeviceViewHolder> {
+
+        private List<BluetoothDeviceModel> devices;
+
+        public DeviceAdapter(List<BluetoothDeviceModel> devices) {
+            this.devices = devices;
+        }
+
+        @NonNull
+        @Override
+        public com.example.bluetoothconnectivity.DeviceAdapter.DeviceViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            View itemView = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.item_device, parent, false);
+            return new com.example.bluetoothconnectivity.DeviceAdapter.DeviceViewHolder(itemView);
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull com.example.bluetoothconnectivity.DeviceAdapter.DeviceViewHolder holder, int position) {
+            BluetoothDeviceModel deviceModel = devices.get(position);
+            holder.deviceNameTextView.setText(deviceModel.getDeviceName() + "\n" + deviceModel.getDeviceAddress());
+        }
+
+        @Override
+        public int getItemCount() {
+            return devices.size();
+        }
+
+        public class DeviceViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+            public TextView deviceNameTextView;
+
+            public DeviceViewHolder(View itemView) {
+                super(itemView);
+                deviceNameTextView = itemView.findViewById(R.id.deviceName);
+
+                // Установка обработчика клика для элемента списка
+                itemView.setOnClickListener(this);
+            }
+
+            @Override
+            public void onClick(View view) {
+                int position = getAdapterPosition();
+                if (position != RecyclerView.NO_POSITION) {
+                    BluetoothDeviceModel clickedDevice = devices.get(position);
+
+                    // Здесь можно создать и запустить новую активность,
+                    // передавая информацию о выбранном устройстве (например, имя и MAC-адрес)
+                    Intent intent = new Intent(itemView.getContext(), DeviceExtra.class);
+                    intent.putExtra("deviceName", clickedDevice.getDeviceName());
+                    itemView.getContext().startActivity(intent);
+
+                    ClientClass clientClass = new ClientClass(deviceArray[position]);
+                    clientClass.start();
+                    status.setText("Connecting");
+                }
+            }
+        }
+    }*/
 
     private void getBluetoothPermission() {
         if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.BLUETOOTH_CONNECT)) {
